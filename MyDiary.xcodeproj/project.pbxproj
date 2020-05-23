@@ -15,6 +15,8 @@
 		634311A42475775800D08369 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 634311A22475775800D08369 /* LaunchScreen.storyboard */; };
 		634311AF2475775800D08369 /* MyDiaryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634311AE2475775800D08369 /* MyDiaryTests.swift */; };
 		634311BA2475775800D08369 /* MyDiaryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 634311B92475775800D08369 /* MyDiaryUITests.swift */; };
+		636143312477F38700828BDB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636143302477F38700828BDB /* HomeViewController.swift */; };
+		63614333247831AA00828BDB /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63614332247831AA00828BDB /* ShowViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		634311B52475775800D08369 /* MyDiaryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyDiaryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		634311B92475775800D08369 /* MyDiaryUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDiaryUITests.swift; sourceTree = "<group>"; };
 		634311BB2475775800D08369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		636143302477F38700828BDB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		63614332247831AA00828BDB /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,8 @@
 				634311992475775700D08369 /* SceneDelegate.swift */,
 				6343119B2475775700D08369 /* ViewController.swift */,
 				6343119D2475775700D08369 /* Main.storyboard */,
+				63614332247831AA00828BDB /* ShowViewController.swift */,
+				636143302477F38700828BDB /* HomeViewController.swift */,
 				634311A02475775800D08369 /* Assets.xcassets */,
 				634311A22475775800D08369 /* LaunchScreen.storyboard */,
 				634311A52475775800D08369 /* Info.plist */,
@@ -259,9 +265,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63614333247831AA00828BDB /* ShowViewController.swift in Sources */,
 				6343119C2475775700D08369 /* ViewController.swift in Sources */,
 				634311982475775700D08369 /* AppDelegate.swift in Sources */,
 				6343119A2475775700D08369 /* SceneDelegate.swift in Sources */,
+				636143312477F38700828BDB /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
