@@ -42,7 +42,6 @@ class ShowViewController: UIViewController {
         showTextView.text = monthDiary
     }
     
-
     /*
     // MARK: - Navigation
 

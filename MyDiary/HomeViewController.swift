@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     var dayText: String!
     
     let realm = try! Realm()
+    let diaries = try! Realm().objects(Diary.self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +47,12 @@ class HomeViewController: UIViewController {
         newDiary.text = diaryText
         
         try! realm.write {
-            realm.add(newDiary)
+            if judgeSameDay(dayJudge: dayText) == -1 {
+                realm.add(newDiary)
+            } else {
+                let sameDay = judgeSameDay(dayJudge: dayText)
+                diaries[sameDay].text = newDiary.text
+            }
         }
         
         
@@ -61,6 +67,15 @@ class HomeViewController: UIViewController {
             handler: nil
         ))
         present(alert, animated: true)
+    }
+    
+    func judgeSameDay(dayJudge: String) -> Int{
+        for i in 0..<diaries.count {
+            if  dayJudge == diaries[i].day {
+                    return i
+            }
+        }
+        return -1
     }
     
     
