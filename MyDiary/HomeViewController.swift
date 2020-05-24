@@ -7,29 +7,30 @@
 //
 
 import UIKit
+import RealmSwift
 
 class HomeViewController: UIViewController {
     
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var diaryTextView: UITextView!
-    var textArray: Array<String> = []
-    var dayArray: Array<String> = []
-    let saveData = UserDefaults.standard
-    let saveDay = UserDefaults.standard
+    var diaryText: String!
+    var dayText: String!
+//    let saveData = UserDefaults.standard
+//    let saveDay = UserDefaults.standard
+    
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if saveData.array(forKey: "text") != nil {
-            textArray = saveData.array(forKey: "text") as! Array<String>
-        }
-        if saveDay.array(forKey: "day") != nil {
-            dayArray = saveDay.array(forKey: "day") as! Array<String>
-        }
-        
-        for i in 0..<textArray.count {
-        diaryTextView.text = textArray[i]
-        }
+//        if saveData.array(forKey: "text") != nil {
+//            textArray = saveData.array(forKey: "text") as! Array<String>
+//        }
+//        if saveDay.array(forKey: "day") != nil {
+//            dayArray = saveDay.array(forKey: "day") as! Array<String>
+//        }
+
+        diaryTextView.text = diaryText
         dayLabel.text = day()
 
         // Do any additional setup after loading the view.
@@ -46,13 +47,21 @@ class HomeViewController: UIViewController {
     
     
     @IBAction func save() {
-        dayArray.append(day())
+        let newDiary = Diary()
+        dayText = day()
+        diaryText = diaryTextView.text!
+        newDiary.day = dayText
+        newDiary.text = diaryText
         
-        if diaryTextView.text != nil {
-            textArray.append(diaryTextView.text)
+        try! realm.write {
+            realm.add(newDiary)
         }
-        saveData.set(textArray, forKey: "text")
-        saveDay.set(dayArray, forKey: "day")
+        
+//        if diaryTextView.text != nil {
+//            diaryText.append(diaryTextView.text)
+//        }
+//        saveData.set(textArray, forKey: "text")
+//        saveDay.set(dayArray, forKey: "day")
         
         let alert = UIAlertController(
             title: "保存完了",
