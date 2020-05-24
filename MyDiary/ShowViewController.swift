@@ -13,6 +13,7 @@ class ShowViewController: UIViewController {
     @IBOutlet var showTextView: UITextView!
     var textArray: Array<String> = []
     var dayArray: Array<String> = []
+    var monthDiary: String!
     let saveData = UserDefaults.standard
     let saveDay = UserDefaults.standard
 
@@ -32,8 +33,9 @@ class ShowViewController: UIViewController {
         }
         
         for i in 0..<textArray.count {
-            showTextView.text = dayArray[i] + "\n\n" + textArray[i]
+            monthDiary = dayArray[1] + "\n\n" + textArray[i]
         }
+        showTextView.text = monthDiary
     }
     
 
