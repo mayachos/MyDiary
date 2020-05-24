@@ -15,20 +15,12 @@ class HomeViewController: UIViewController {
     @IBOutlet var diaryTextView: UITextView!
     var diaryText: String!
     var dayText: String!
-//    let saveData = UserDefaults.standard
-//    let saveDay = UserDefaults.standard
     
     let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        if saveData.array(forKey: "text") != nil {
-//            textArray = saveData.array(forKey: "text") as! Array<String>
-//        }
-//        if saveDay.array(forKey: "day") != nil {
-//            dayArray = saveDay.array(forKey: "day") as! Array<String>
-//        }
 
         diaryTextView.text = diaryText
         dayLabel.text = day()
@@ -57,11 +49,6 @@ class HomeViewController: UIViewController {
             realm.add(newDiary)
         }
         
-//        if diaryTextView.text != nil {
-//            diaryText.append(diaryTextView.text)
-//        }
-//        saveData.set(textArray, forKey: "text")
-//        saveDay.set(dayArray, forKey: "day")
         
         let alert = UIAlertController(
             title: "保存完了",
