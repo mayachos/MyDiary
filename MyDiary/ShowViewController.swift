@@ -35,7 +35,6 @@ class ShowViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
 
-        
         for i in 0..<textArray.count {
             monthDiary = monthDiary + dayArray[i] + "\n\n" + textArray[i] + "\n"
         }

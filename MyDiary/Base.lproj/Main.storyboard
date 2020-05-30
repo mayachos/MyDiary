@@ -91,10 +91,10 @@
             </objects>
             <point key="canvasLocation" x="-13.043478260869566" y="118.52678571428571"/>
         </scene>
-        <!--View Controller-->
+        <!--Scene Setting View Controller-->
         <scene sceneID="em0-DC-6g1">
             <objects>
-                <viewController id="j3F-qg-cdx" sceneMemberID="viewController">
+                <viewController id="j3F-qg-cdx" customClass="SceneSettingViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5UA-UP-0Py">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

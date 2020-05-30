@@ -18,30 +18,29 @@ class HomeViewController: UIViewController {
     
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
+    
+    let now = Date()
+    var calender = Calendar.current
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+        let ym = calender.dateComponents([.year, .month, .day], from: now)
         diaryTextView.text = diaryText
-        dayLabel.text = day()
+        dayLabel.text = String(ym.month!) + "月" + String(ym.day!) + "日"
 
         // Do any additional setup after loading the view.
     }
     
-    func day() -> String {
-        let f = DateFormatter()
-        f.dateStyle = .full
-        f.locale = Locale(identifier: "ja_JP")
-        f.dateFormat = "yy/MM/dd(EEE)"
-        let now = Date()
-        return f.string(from: now)
-    }
-    
-    
     @IBAction func save() {
+        calender.locale = Locale(identifier: "ja")
+        let weekdaySymbols = calender.weekdaySymbols
+        let year = calender.component(.year, from: now)
+        let month = calender.component(.month, from: now)
+        let day = calender.component(.day, from: now)
+        let wday = calender.component(.weekday, from: now)
         let newDiary = Diary()
-        dayText = day()
+        dayText = "\(year) / \(month) / \(day) ( \(weekdaySymbols[wday - 1]))"
+        
         diaryText = diaryTextView.text!
         newDiary.day = dayText
         newDiary.text = diaryText
@@ -78,6 +77,9 @@ class HomeViewController: UIViewController {
         return -1
     }
     
+    @IBAction func nextDay() {
+        
+    }
     
 
     /*
