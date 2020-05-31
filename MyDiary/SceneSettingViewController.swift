@@ -21,6 +21,8 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     var scene: [String] = []
     var sceneDic: [String:[String]] = [:]
+    var character: [String] = []
+    var characterDic: [String:[String]] = [:]
     
     func sceneInstance() {
         self.scene += ["学校", "家", "レジャー施設", "お店"]
@@ -28,6 +30,13 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.sceneDic[scene[1]] = ["リビング", "キッチン", "寝室", "お風呂・トイレ"]
         self.sceneDic[scene[2]] = ["動物園", "遊園地", "水族館", "公園"]
         self.sceneDic[scene[3]] = ["レストラン", "コンビニ", "スーパー", "カフェ"]
+    }
+    func characterInstance() {
+        self.character += ["家族", "友達", "仕事関係", "その他"]
+        self.characterDic[character[0]] = ["自分", "親", "兄弟・姉妹", "親戚"]
+        self.characterDic[character[1]] = ["幼馴染・学生", "同僚", "その他"]
+        self.characterDic[character[2]] = ["上司・先輩", "部下・後輩", "同僚", "取引先"]
+        self.characterDic[character[3]] = ["見知らぬ人", "店員・従業員", "幽霊"]
     }
     
     override func viewDidLoad() {
@@ -37,7 +46,6 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         pickerView1.dataSource = self
         pickerView1?.selectRow(0, inComponent: 0, animated: false)
         pickerView1?.selectRow(1, inComponent: 1, animated: false)
-        pickerView1.reloadAllComponents()
     }
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
@@ -47,7 +55,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         if component == 0 {
             return scene.count
         } else if component == 1 {
-            return pickerView.selectedRow(inComponent: 0)
+            return sceneDic.count
         } else {
             return 0
         }
@@ -55,20 +63,20 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if component == 0 {
             return scene[row]
-        } else {
+        } else if component == 1{
             return sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row]
+        } else {
+            return "error"
         }
-//        } else {
-//            return "error"
-//        }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if component == 0 {
             sceneLabel.text = scene[row]
         } else {
-            sceneLabel.text = sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[0]
+            sceneLabel.text = sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row]
         }
     }
+    
     
 
     /*
