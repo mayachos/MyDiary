@@ -18,7 +18,9 @@ class ShowViewController: UIViewController {
     var textArray: Array<String> = []
     var dayArray: Array<String> = []
     var monthDiary: String = ""
-
+    var sceneArray: Array<String> = []
+    var characterArray: Array<String> = []
+    var timeArray: Array<String> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,9 @@ class ShowViewController: UIViewController {
         for i in 0..<diaries.count {
             textArray.append(diaries[i].text)
             dayArray.append(diaries[i].day)
+            sceneArray.append(diaries[i].scene)
+            characterArray.append(diaries[i].character)
+            timeArray.append(diaries[i].time)
         }
 
         // Do any additional setup after loading the view.
@@ -36,10 +41,11 @@ class ShowViewController: UIViewController {
         super.viewWillAppear(true)
 
         for i in 0..<textArray.count {
-            monthDiary = monthDiary + dayArray[i] + "\n\n" + textArray[i] + "\n"
+            monthDiary = monthDiary + dayArray[i] + "\n\n" + textArray[i] + "\n #" + sceneArray[i] + " #" + characterArray[i] + " #" + timeArray[i]
         }
         showTextView.text = monthDiary
     }
+    
     
     /*
     // MARK: - Navigation

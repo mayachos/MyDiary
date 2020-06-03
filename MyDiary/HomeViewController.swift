@@ -15,6 +15,9 @@ class HomeViewController: UIViewController {
     @IBOutlet var diaryTextView: UITextView!
     var diaryText: String!
     var dayText: String!
+    var sceneText: String!
+    var characterText: String!
+    var timeText: String!
     
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
@@ -31,6 +34,10 @@ class HomeViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+//    func sendData(data: String) {
+//        sceneText = data
+//    }
+    
     @IBAction func save() {
         calender.locale = Locale(identifier: "ja")
         let weekdaySymbols = calender.weekdaySymbols
@@ -44,6 +51,9 @@ class HomeViewController: UIViewController {
         diaryText = diaryTextView.text!
         newDiary.day = dayText
         newDiary.text = diaryText
+        newDiary.scene = sceneText
+        newDiary.character = characterText
+        newDiary.time = timeText
         
         try! realm.write {
             if judgeSameDay(dayJudge: dayText) == -1 {
@@ -51,6 +61,9 @@ class HomeViewController: UIViewController {
             } else {
                 let sameDay = judgeSameDay(dayJudge: dayText)
                 diaries[sameDay].text = newDiary.text
+                diaries[sameDay].scene = newDiary.scene
+                diaries[sameDay].character = newDiary.character
+                diaries[sameDay].time = newDiary.time
             }
         }
         
@@ -71,7 +84,7 @@ class HomeViewController: UIViewController {
     func judgeSameDay(dayJudge: String) -> Int{
         for i in 0..<diaries.count {
             if  dayJudge == diaries[i].day {
-                    return i
+                return i
             }
         }
         return -1
