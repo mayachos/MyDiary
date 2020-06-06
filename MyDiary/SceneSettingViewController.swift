@@ -159,10 +159,6 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
             nextView.timeText = timeLabel.text
         }
     }
-//    @IBAction func register() {
-////        dele?.sendData(data: sceneLabel.text ?? defaultText)
-//        dismiss(animated: true, completion: nil)
-//    }
     
     
 

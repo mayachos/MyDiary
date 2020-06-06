@@ -20,6 +20,7 @@
 		63469865247A4AF70070E32C /* diary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63469864247A4AF70070E32C /* diary.swift */; };
 		636143312477F38700828BDB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 636143302477F38700828BDB /* HomeViewController.swift */; };
 		63614333247831AA00828BDB /* ShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63614332247831AA00828BDB /* ShowViewController.swift */; };
+		63D368ED248B7C550043F35B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D368EC248B7C550043F35B /* SearchViewController.swift */; };
 		63DD7361248142C8003C8A65 /* SceneSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DD7360248142C8003C8A65 /* SceneSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		63469864247A4AF70070E32C /* diary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = diary.swift; sourceTree = "<group>"; };
 		636143302477F38700828BDB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		63614332247831AA00828BDB /* ShowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowViewController.swift; sourceTree = "<group>"; };
+		63D368EC248B7C550043F35B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		63DD7360248142C8003C8A65 /* SceneSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,6 +117,7 @@
 				634311992475775700D08369 /* SceneDelegate.swift */,
 				6343119B2475775700D08369 /* ViewController.swift */,
 				6343119D2475775700D08369 /* Main.storyboard */,
+				63D368EC248B7C550043F35B /* SearchViewController.swift */,
 				63614332247831AA00828BDB /* ShowViewController.swift */,
 				63DD7360248142C8003C8A65 /* SceneSettingViewController.swift */,
 				636143302477F38700828BDB /* HomeViewController.swift */,
@@ -284,6 +287,7 @@
 			files = (
 				63614333247831AA00828BDB /* ShowViewController.swift in Sources */,
 				63DD7361248142C8003C8A65 /* SceneSettingViewController.swift in Sources */,
+				63D368ED248B7C550043F35B /* SearchViewController.swift in Sources */,
 				6343119C2475775700D08369 /* ViewController.swift in Sources */,
 				634311982475775700D08369 /* AppDelegate.swift in Sources */,
 				6343119A2475775700D08369 /* SceneDelegate.swift in Sources */,

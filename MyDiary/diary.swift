@@ -10,6 +10,7 @@ import Foundation
 import RealmSwift
 
 class Diary: Object {
+    @objc dynamic var  month: Int = 0
     @objc dynamic var day: String = ""
     @objc dynamic var text: String = ""
     @objc dynamic var scene: String = ""

@@ -15,40 +15,61 @@ class HomeViewController: UIViewController {
     @IBOutlet var diaryTextView: UITextView!
     var diaryText: String!
     var dayText: String!
+    var monthText: Int!
     var sceneText: String!
     var characterText: String!
     var timeText: String!
     
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
+    var weekdaySymbols: [String]!
+    var year: Int!
+    var month: Int!
+    var day: Int!
+    var wday: Int!
+    let newDiary = Diary()
     
     let now = Date()
     var calender = Calendar.current
+    
+    func calenderInstance() {
+        calender.locale = Locale(identifier: "ja")
+        weekdaySymbols = calender.weekdaySymbols
+        year = calender.component(.year, from: now)
+        month = calender.component(.month, from: now)
+        day = calender.component(.day, from: now)
+        wday = calender.component(.weekday, from: now)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let ym = calender.dateComponents([.year, .month, .day], from: now)
-        diaryTextView.text = diaryText
-        dayLabel.text = String(ym.month!) + "月" + String(ym.day!) + "日"
+        calenderInstance()
+        dayLabel.text = String(month) + "月" + String(day) + "日"
+        
 
         // Do any additional setup after loading the view.
     }
     
-//    func sendData(data: String) {
-//        sceneText = data
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        calenderInstance()
+        let appearDay: String = String(year) + String(month)
+            + String(day) + weekdaySymbols[wday - 1]
+        if judgeSameDay(dayJudge: appearDay) == -1 {
+            diaryTextView.text = diaryText
+        } else {
+            let sameDay = judgeSameDay(dayJudge: appearDay)
+            diaryTextView.text = diaries[sameDay].text
+        }
+        
+    }
     
     @IBAction func save() {
-        calender.locale = Locale(identifier: "ja")
-        let weekdaySymbols = calender.weekdaySymbols
-        let year = calender.component(.year, from: now)
-        let month = calender.component(.month, from: now)
-        let day = calender.component(.day, from: now)
-        let wday = calender.component(.weekday, from: now)
-        let newDiary = Diary()
-        dayText = "\(year) / \(month) / \(day) ( \(weekdaySymbols[wday - 1]))"
-        
+        calenderInstance()
+        dayText = "\(String(describing: year!)) / \(String(describing: month!)) / \(String(describing: day!)) ( \(weekdaySymbols[wday - 1]))"
+        monthText = year * 100 + month
+        print(monthText as Any)
         diaryText = diaryTextView.text!
+        newDiary.month = monthText
         newDiary.day = dayText
         newDiary.text = diaryText
         newDiary.scene = sceneText
@@ -60,6 +81,7 @@ class HomeViewController: UIViewController {
                 realm.add(newDiary)
             } else {
                 let sameDay = judgeSameDay(dayJudge: dayText)
+                diaries[sameDay].month = monthText
                 diaries[sameDay].text = newDiary.text
                 diaries[sameDay].scene = newDiary.scene
                 diaries[sameDay].character = newDiary.character
