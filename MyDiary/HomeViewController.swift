@@ -16,9 +16,9 @@ class HomeViewController: UIViewController {
     var diaryText: String!
     var dayText: String!
     var monthText: Int!
-    var sceneText: String!
-    var characterText: String!
-    var timeText: String!
+    var sceneText: String = ""
+    var characterText: String = ""
+    var timeText: String = ""
     
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
@@ -111,11 +111,33 @@ class HomeViewController: UIViewController {
         }
         return -1
     }
-    
-    @IBAction func nextDay() {
-        
+    @IBAction func showView(_ sender: Any) {
+        self.performSegue(withIdentifier: "fromHomeToShow", sender: nil)
     }
     
+    @IBAction func sceneView(_ sender: Any) {
+        performSegue(withIdentifier: "toScene", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toScene" {
+            let nextView = segue.destination as! SceneSettingViewController
+            nextView.resultHandler1 = { sceneSet in
+                self.sceneText = sceneSet
+            }
+            nextView.resultHandler2 = { characterSet in
+                self.characterText = characterSet
+            }
+            nextView.resultHandler3 = { timeSet in
+                self.timeText = timeSet
+            }
+        }
+        if segue.identifier == "fromHomeToShow" {
+            let nextView = segue.destination as! ShowViewController
+            nextView.setting = 0
+        }
+    }
+       
 
     /*
     // MARK: - Navigation

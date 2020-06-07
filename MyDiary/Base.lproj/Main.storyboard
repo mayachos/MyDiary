@@ -29,7 +29,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <state key="normal" title="場面登録"/>
                                 <connections>
-                                    <segue destination="j3F-qg-cdx" kind="presentation" modalPresentationStyle="fullScreen" id="Qs8-61-UDU"/>
+                                    <action selector="sceneView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5M-t1-0xh"/>
+                                    <segue destination="j3F-qg-cdx" kind="presentation" identifier="toScene" id="gAx-8Q-6Tn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM7-Pe-x0T">
@@ -41,14 +42,6 @@
                                     <action selector="save" destination="BYZ-38-t0r" eventType="touchUpInside" id="Tjx-Fg-Rsc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPS-6h-1np">
-                                <rect key="frame" x="193" y="740" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="jto-pw-xDL" kind="presentation" modalPresentationStyle="fullScreen" id="oyx-2G-z33"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="日付" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PPS-da-wpA">
                                 <rect key="frame" x="127" y="75" width="160" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -56,6 +49,23 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mhr-zC-VWj">
+                                <rect key="frame" x="290" y="741" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search"/>
+                                <connections>
+                                    <segue destination="UqV-u1-P3X" kind="presentation" modalPresentationStyle="fullScreen" id="nIx-nf-8ci"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lPS-6h-1np">
+                                <rect key="frame" x="93" y="741" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="showView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xFD-0h-VQ0"/>
+                                    <segue destination="jto-pw-xDL" kind="presentation" identifier="fromHomeToShow" modalPresentationStyle="fullScreen" id="oyx-2G-z33"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -67,14 +77,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-13.043478260869566" y="118.52678571428571"/>
+            <point key="canvasLocation" x="-39" y="119"/>
         </scene>
         <!--Scene Setting View Controller-->
         <scene sceneID="em0-DC-6g1">
             <objects>
                 <viewController id="j3F-qg-cdx" customClass="SceneSettingViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5UA-UP-0Py">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登場人物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwI-JK-BW9">
@@ -103,10 +113,10 @@
                                 <rect key="frame" x="82" y="480" width="252" height="74"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU9-WV-7cO">
-                                <rect key="frame" x="186" y="85" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登録画面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OU9-WV-7cO">
+                                <rect key="frame" x="125" y="85" width="159" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -116,7 +126,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
                                 <state key="normal" title="登録"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" identifier="toHome" modalPresentationStyle="fullScreen" id="ijl-yQ-bYm"/>
+                                    <action selector="back:" destination="j3F-qg-cdx" eventType="touchUpInside" id="ZpP-8n-3TE"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEw-rW-3UH">
@@ -162,7 +172,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="93h-KY-K42" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747.82608695652175" y="-232.36607142857142"/>
+            <point key="canvasLocation" x="-771" y="832"/>
         </scene>
         <!--Show View Controller-->
         <scene sceneID="5hN-ox-sBi">
@@ -201,11 +211,11 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="UjB-dT-LSx"/>
+                                    <action selector="back:" destination="jto-pw-xDL" eventType="touchUpInside" id="NWu-bS-6vO"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="月" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8J-ch-8fu">
-                                <rect key="frame" x="157" y="44" width="100" height="49"/>
+                                <rect key="frame" x="20" y="44" width="374" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
@@ -216,18 +226,20 @@
                         <viewLayoutGuide key="safeArea" id="Nym-bi-RfU"/>
                     </view>
                     <connections>
-                        <outlet property="monthLabel" destination="y8J-ch-8fu" id="1DS-Bz-Yqw"/>
+                        <outlet property="appearLabel" destination="y8J-ch-8fu" id="SM3-w0-yXm"/>
+                        <outlet property="nextButton" destination="apX-x0-ofT" id="4Ru-Ll-Uc3"/>
+                        <outlet property="preButton" destination="qbF-cX-UR0" id="9Oo-hk-Or2"/>
                         <outlet property="showTextView" destination="SmP-Ue-lEv" id="2Xt-da-zei"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFt-YE-LdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747.82608695652175" y="473.4375"/>
+            <point key="canvasLocation" x="839" y="408"/>
         </scene>
-        <!--Serach View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="Pb9-L4-yyz">
             <objects>
-                <viewController id="UqV-u1-P3X" customClass="SerachViewController" sceneMemberID="viewController">
+                <viewController id="UqV-u1-P3X" customClass="SearchViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1LX-dk-UtO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,10 +270,10 @@
                                 <rect key="frame" x="82" y="480" width="252" height="74"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL5-mc-n4v">
-                                <rect key="frame" x="186" y="85" width="42" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="検索画面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL5-mc-n4v">
+                                <rect key="frame" x="154" y="78" width="106" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -269,7 +281,10 @@
                                 <rect key="frame" x="178" y="634" width="59" height="47"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="29"/>
-                                <state key="normal" title="登録"/>
+                                <state key="normal" title="検索"/>
+                                <connections>
+                                    <segue destination="jto-pw-xDL" kind="presentation" identifier="toShow" modalPresentationStyle="fullScreen" id="BRK-w6-RLu"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yxc-sV-tuM">
                                 <rect key="frame" x="82" y="226" width="252" height="21"/>
@@ -299,17 +314,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aot-Sd-hY7">
+                                <rect key="frame" x="154" y="718" width="106" height="82"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ホームへ戻る"/>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="5Xn-cL-Bso"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ly8-JY-eMW"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Zxh-ta-dNj"/>
+                    <connections>
+                        <outlet property="characterLabel" destination="xme-hK-37I" id="zdf-pR-v4Y"/>
+                        <outlet property="pickerView1" destination="nNw-J5-Wtr" id="78u-Mx-G4L"/>
+                        <outlet property="pickerView2" destination="r7Q-4g-wxk" id="1CE-B7-hX0"/>
+                        <outlet property="pickerView3" destination="Qnu-aa-Bgc" id="O5Y-3K-K1i"/>
+                        <outlet property="sceneLabel" destination="Yxc-sV-tuM" id="C2U-kK-Bf4"/>
+                        <outlet property="timeLabel" destination="yTL-bA-fXa" id="4eU-VQ-C4v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIy-zE-KTg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1449" y="-4"/>
+            <point key="canvasLocation" x="-39" y="832"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="UjB-dT-LSx"/>
+        <segue reference="BRK-w6-RLu"/>
     </inferredMetricsTieBreakers>
 </document>

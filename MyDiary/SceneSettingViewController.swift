@@ -17,7 +17,6 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
     let defaultText = ""
-//    var dele: DataSend?
     
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var pickerView2: UIPickerView!
@@ -31,6 +30,9 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     var character: [String] = []
     var characterDic: [String:[String]] = [:]
     var timeArray: [String] = []
+    var resultHandler1: ((String) -> Void)?
+    var resultHandler2: ((String) -> Void)?
+    var resultHandler3: ((String) -> Void)?
     
     func sceneInstance() {
         self.scene += ["学校", "家", "レジャー施設", "お店"]
@@ -151,15 +153,33 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toHome" {
-            let nextView = segue.destination as! HomeViewController
-            nextView.sceneText = sceneLabel.text
-            nextView.characterText = characterLabel.text
-            nextView.timeText = timeLabel.text
+    @IBAction func back(_ sender: Any) {
+        let sceneSet = self.sceneLabel.text ?? defaultText
+        let characterSet = self.characterLabel.text ?? defaultText
+        let timeSet = self.timeLabel.text ?? defaultText
+        
+        if let handler1 = self.resultHandler1 {
+            handler1(sceneSet)
         }
+        if let handler2 = self.resultHandler2 {
+                    handler2(characterSet)
+        }
+        if let handler3 = self.resultHandler3 {
+                    handler3(timeSet)
+        }
+        
+        self.dismiss(animated: true, completion: nil)
     }
     
+//   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//          if segue.identifier == "toHome" {
+//              let nextView = segue.destination as! HomeViewController
+//              nextView.sceneText = sceneLabel.text
+//              nextView.characterText = characterLabel.text
+//              nextView.timeText = timeLabel.text
+//          }
+//      }
+//
     
 
     /*
