@@ -7,14 +7,54 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        let config = Realm.Configuration(
+            schemaVersion: 1,
+            migrationBlock: { miragration, oldSchemaVersion in
+                if(oldSchemaVersion < 1) {
+                                                
+                }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(
+          schemaVersion: 4,
+          migrationBlock: { migration, oldSchemaVersion in
+            migration.enumerateObjects(ofType: sceneI.className()) { oldObject, newObject in
+              if oldSchemaVersion < 3 {
+                newObject!["Scene"] = ""
+              }
+            }
+            migration.enumerateObjects(ofType: charaI.className()) { oldObject, newObject in
+              if oldSchemaVersion < 3 {
+                newObject!["Character"] = ""
+              }
+            }
+            migration.enumerateObjects(ofType: timeI.className()) { oldObject, newObject in
+              if oldSchemaVersion < 3 {
+                newObject!["Times"] = ""
+              }
+            }
+            migration.enumerateObjects(ofType: sceneItem.className())  { oldObject, newObject in
+                if oldSchemaVersion < 2 {
+                  newObject!["sceneName"] = ""
+                }
+            }
+            migration.enumerateObjects(ofType: charaItem.className())  { oldObject, newObject in
+                if oldSchemaVersion < 2 {
+                    newObject!["Chara"] = ""
+                }
+            }
+          })
+
+        // Realmは自動的にマイグレーションを実行し、成功したらRealmを開きます。
+        //let realm = try! Realm()
         return true
     }
 

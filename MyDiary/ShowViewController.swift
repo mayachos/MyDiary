@@ -16,7 +16,7 @@ class ShowViewController: UIViewController {
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var preButton: UIButton!
     let realm = try! Realm()
-    let diaries = try! Realm().objects(Diary.self)
+    let diaries = try! Realm().objects(Diary.self)//.sorted(byKeyPath: "day")
     let now = Date()
     var calender = Calendar.current
     var setting: Int = 0
@@ -85,8 +85,6 @@ class ShowViewController: UIViewController {
             if monthAppear > 1 {
                 monthAppear -= 1
                 monthCount -= 1
-                print(monthAppear as Any)
-                print(monthCount as Any)
             } else if monthAppear == 1 {
                 monthAppear = 12
                 monthCount -= 89
@@ -104,7 +102,6 @@ class ShowViewController: UIViewController {
             if monthAppear < 12 {
                 monthAppear += 1
                 monthCount += 1
-                print(monthCount as Any)
             } else if monthAppear == 12 {
                 monthAppear = 1
                 monthCount += 89

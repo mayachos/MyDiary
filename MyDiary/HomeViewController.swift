@@ -43,38 +43,33 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        calenderInstance()
-        dayLabel.text = String(month) + "月" + String(day) + "日"
-        
-
         // Do any additional setup after loading the view.
+        //definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         calenderInstance()
-        let appearDay: String = String(year) + String(month)
-            + String(day) + weekdaySymbols[wday - 1]
+        dayLabel.text = String(month) + "月" + String(day) + "日"
+        let appearDay: String = "\(String(describing: year!)) / \(String(describing: month!)) / \(String(describing: day!)) ( \(weekdaySymbols[wday - 1]))"
         if judgeSameDay(dayJudge: appearDay) == -1 {
             diaryTextView.text = diaryText
         } else {
             let sameDay = judgeSameDay(dayJudge: appearDay)
             diaryTextView.text = diaries[sameDay].text
         }
-        
     }
     
     @IBAction func save() {
         calenderInstance()
         dayText = "\(String(describing: year!)) / \(String(describing: month!)) / \(String(describing: day!)) ( \(weekdaySymbols[wday - 1]))"
         monthText = year * 100 + month
-        print(monthText as Any)
         diaryText = diaryTextView.text!
         newDiary.month = monthText
         newDiary.day = dayText
         newDiary.text = diaryText
-        newDiary.scene = sceneText
-        newDiary.character = characterText
-        newDiary.time = timeText
+        if noItem(n: sceneText) { newDiary.scene = sceneText }
+        if noItem(n: characterText) { newDiary.character = characterText }
+        if noItem(n: timeText) { newDiary.time = timeText }
         
         try! realm.write {
             if judgeSameDay(dayJudge: dayText) == -1 {
@@ -88,8 +83,6 @@ class HomeViewController: UIViewController {
                 diaries[sameDay].time = newDiary.time
             }
         }
-        
-        
         let alert = UIAlertController(
             title: "保存完了",
             message: "日記を記録しました",
@@ -112,11 +105,17 @@ class HomeViewController: UIViewController {
         return -1
     }
     @IBAction func showView(_ sender: Any) {
-        self.performSegue(withIdentifier: "fromHomeToShow", sender: nil)
+        let storyboard: UIStoryboard = self.storyboard!
+        let second = storyboard.instantiateViewController(identifier: "SHOW")
+        self.present(second, animated: true, completion: nil)
+        //self.performSegue(withIdentifier: "fromHomeToShow", sender: nil)
     }
     
     @IBAction func sceneView(_ sender: Any) {
-        performSegue(withIdentifier: "toScene", sender: nil)
+        let storyboard: UIStoryboard = self.storyboard!
+        let second = storyboard.instantiateViewController(identifier: "SCENE")
+        self.present(second, animated: true, completion: nil)
+        //self.performSegue(withIdentifier: "toScene", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -137,7 +136,11 @@ class HomeViewController: UIViewController {
             nextView.setting = 0
         }
     }
-       
+    
+    func noItem(n:String)->Bool {
+        if n == "登録しない" { return false }
+        return true
+    }
 
     /*
     // MARK: - Navigation

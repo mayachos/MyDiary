@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home View Controller-->
+        <!--Item-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="HomeViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
@@ -30,7 +30,6 @@
                                 <state key="normal" title="場面登録"/>
                                 <connections>
                                     <action selector="sceneView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="H5M-t1-0xh"/>
-                                    <segue destination="j3F-qg-cdx" kind="presentation" identifier="toScene" id="gAx-8Q-6Tn"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM7-Pe-x0T">
@@ -63,13 +62,13 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="showView:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xFD-0h-VQ0"/>
-                                    <segue destination="jto-pw-xDL" kind="presentation" identifier="fromHomeToShow" modalPresentationStyle="fullScreen" id="oyx-2G-z33"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.99953407049999998" green="0.98835557699999999" blue="0.47265523669999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="TJy-4u-47f"/>
                     <connections>
                         <outlet property="dayLabel" destination="PPS-da-wpA" id="CI7-BO-mBL"/>
                         <outlet property="diaryTextView" destination="zIJ-y7-ALF" id="me2-L4-zZj"/>
@@ -77,14 +76,126 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39" y="119"/>
+            <point key="canvasLocation" x="871.01449275362324" y="118.52678571428571"/>
+        </scene>
+        <!--List Table View Controller-->
+        <scene sceneID="7Za-xB-R1X">
+            <objects>
+                <tableViewController id="43R-ON-PqG" customClass="ListTableViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="FKx-fL-zW4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="Nxf-Ov-oDB">
+                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Nxf-Ov-oDB" id="8He-Pt-fCC">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="43R-ON-PqG" id="P3Q-be-ayP"/>
+                            <outlet property="delegate" destination="43R-ON-PqG" id="xbJ-CQ-bbM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="fte-Oz-5Sz">
+                        <barButtonItem key="leftBarButtonItem" title="back" id="eFX-S4-xDy"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="HWR-yW-9LP" kind="show" identifier="toList2ViewController" id="EBx-nc-VPY"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mpv-Dc-gdT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="871" y="1546"/>
+        </scene>
+        <!--List2 Table View Controller-->
+        <scene sceneID="k8y-FG-v9i">
+            <objects>
+                <tableViewController id="HWR-yW-9LP" customClass="List2TableViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="AZX-6Y-dBc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="70" id="3IB-bE-ljx">
+                                <rect key="frame" x="0.0" y="28" width="414" height="70"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3IB-bE-ljx" id="Orh-Ds-YGs">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="HWR-yW-9LP" id="sTC-wm-XP0"/>
+                            <outlet property="delegate" destination="HWR-yW-9LP" id="a67-Xb-igs"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="dNp-DT-aY1">
+                        <barButtonItem key="rightBarButtonItem" title="＋" id="Fyk-1K-Pyb">
+                            <connections>
+                                <segue destination="Ocz-6a-Q3h" kind="show" identifier="toAdd" id="mZL-wb-kF4"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Czu-Xg-0Q7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1613" y="1546"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="7AD-pS-xYb">
+            <objects>
+                <viewController id="Ocz-6a-Q3h" customClass="AddViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gCK-5J-nuH">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZnG-wq-TTW">
+                                <rect key="frame" x="126" y="179" width="167" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lqj-PN-DXd">
+                                <rect key="frame" x="45" y="179" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tVS-H9-97H">
+                                <rect key="frame" x="170" y="517" width="75" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                <state key="normal" title="追加"/>
+                                <connections>
+                                    <action selector="add" destination="Ocz-6a-Q3h" eventType="touchUpInside" id="8kC-gQ-JVN"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="aCZ-Kp-kXP"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Title" id="Bh5-OH-fuT"/>
+                    <connections>
+                        <outlet property="sTextField" destination="ZnG-wq-TTW" id="38L-d5-BwT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ihU-F9-Yh5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2339.130434782609" y="1545.5357142857142"/>
         </scene>
         <!--Scene Setting View Controller-->
         <scene sceneID="em0-DC-6g1">
             <objects>
-                <viewController id="j3F-qg-cdx" customClass="SceneSettingViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SCENE" id="j3F-qg-cdx" customClass="SceneSettingViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5UA-UP-0Py">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="登場人物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PwI-JK-BW9">
@@ -157,6 +268,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iy7-Sq-f4Y">
+                                <rect key="frame" x="333" y="83" width="46" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="mpJ-EO-Cya" kind="presentation" id="eiZ-XX-Uxc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="X2x-em-QwN"/>
@@ -172,12 +291,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="93h-KY-K42" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-771" y="832"/>
+            <point key="canvasLocation" x="139.13043478260872" y="831.69642857142856"/>
         </scene>
         <!--Show View Controller-->
         <scene sceneID="5hN-ox-sBi">
             <objects>
-                <viewController id="jto-pw-xDL" customClass="ShowViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SHOW" id="jto-pw-xDL" customClass="ShowViewController" customModule="MyDiary" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dja-mr-BJR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -234,7 +353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lFt-YE-LdQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="839" y="408"/>
+            <point key="canvasLocation" x="1614" y="832"/>
         </scene>
         <!--Search View Controller-->
         <scene sceneID="Pb9-L4-yyz">
@@ -319,7 +438,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ホームへ戻る"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="presentation" modalPresentationStyle="fullScreen" id="5Xn-cL-Bso"/>
+                                    <action selector="back" destination="UqV-u1-P3X" eventType="touchUpInside" id="JYo-xE-1kZ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -338,10 +457,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RIy-zE-KTg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-39" y="832"/>
+            <point key="canvasLocation" x="871.01449275362324" y="831.69642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qvZ-KZ-gRN">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="mpJ-EO-Cya" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8sK-hl-7ws">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="43R-ON-PqG" kind="relationship" relationship="rootViewController" id="geZ-ms-hXu"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NY8-K9-PLU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="139" y="1546"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="BRK-w6-RLu"/>
-    </inferredMetricsTieBreakers>
 </document>

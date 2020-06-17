@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     func judgeSame(array: Array<String>, i: Int) -> Bool {
         for j in 0..<i {
-            if array[i] != array[j] {
+            if array[i] != array[j]{
                 return true
             } else {
                 return false
@@ -144,6 +144,9 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
             nextView.setting = 1
          }
      }
+    @IBAction func back() {
+        self.dismiss(animated: true, completion: nil)
+    }
 
     /*
     // MARK: - Navigation

@@ -17,6 +17,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
     let defaultText = ""
+    let defaultNumber = 0
     
     @IBOutlet var pickerView1: UIPickerView!
     @IBOutlet var pickerView2: UIPickerView!
@@ -35,25 +36,29 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     var resultHandler3: ((String) -> Void)?
     
     func sceneInstance() {
-        self.scene += ["学校", "家", "レジャー施設", "お店"]
-        self.sceneDic[scene[0]] = ["教室", "体育館", "グラウンド", "校庭"]
-        self.sceneDic[scene[1]] = ["リビング", "キッチン", "寝室", "お風呂・トイレ"]
-        self.sceneDic[scene[2]] = ["動物園", "遊園地", "水族館", "公園"]
-        self.sceneDic[scene[3]] = ["レストラン", "コンビニ", "スーパー", "カフェ"]
+        //let someScenes = realm.objects(sceneItem.self)
+        self.scene += ["登録しない","学校", "家", "レジャー施設", "お店"]
+        self.sceneDic[scene[0]] = [" "]
+        self.sceneDic[scene[1]] = ["教室", "体育館", "グラウンド", "校庭", "図書室"]
+        self.sceneDic[scene[2]] = ["リビング", "キッチン", "寝室", "お風呂・トイレ"]
+        self.sceneDic[scene[3]] = ["動物園", "遊園地", "水族館", "公園", "海"]
+        self.sceneDic[scene[4]] = ["レストラン", "コンビニ", "スーパー", "カフェ", "デパート"]
     }
     func characterInstance() {
-        self.character += ["家族", "友達・恋人", "仕事関係", "その他"]
-        self.characterDic[character[0]] = ["自分", "親", "兄弟・姉妹", "親戚"]
-        self.characterDic[character[1]] = ["幼馴染・学生", "同僚", "恋人", "妻・夫"]
-        self.characterDic[character[2]] = ["上司・先輩", "部下・後輩", "同僚", "取引先"]
-        self.characterDic[character[3]] = ["見知らぬ人", "店員・従業員", "幽霊", "その他"]
+        self.character += ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
+        self.characterDic[character[0]] = [" ", "", "", "", ""]
+        self.characterDic[character[1]] = ["自分", "親", "兄弟・姉妹", "親戚"]
+        self.characterDic[character[2]] = ["幼馴染", "恋人"]
+        self.characterDic[character[3]] = ["上司・先輩", "部下・後輩", "同僚"]
+        self.characterDic[character[4]] = ["見知らぬ人", "店員", "幽霊", "その他"]
     }
     func timeInstance() {
-        self.timeArray += ["朝", "昼", "夕方", "夜", "深夜"]
+        self.timeArray += ["登録しない", "朝", "昼", "夕方", "夜", "深夜"]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //definesPresentationContext = true
         sceneInstance()
         characterInstance()
         timeInstance()
@@ -72,6 +77,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         pickerView2?.selectRow(1, inComponent: 1, animated: false)
         pickerView3?.selectRow(0, inComponent: 0, animated: false)
     }
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         if pickerView.tag == 3 {
             return 1
@@ -86,7 +92,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
             if component == 0 {
                 return scene.count
             } else if component == 1 {
-                return sceneDic.count
+                return sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]!.count
             } else {
                 return 0
             }
@@ -94,7 +100,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
             if component == 0 {
                 return character.count
             } else if component == 1 {
-                return characterDic.count
+                return characterDic[character[pickerView.selectedRow(inComponent: 0)]]!.count
             } else {
                 return 0
             }
@@ -112,6 +118,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         switch pickerView.tag {
         case 1:
             if component == 0 {
+                pickerView.reloadComponent(1)
                 return scene[row]
             } else if component == 1 {
                 return sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row]
@@ -120,6 +127,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
             }
         case 2:
             if component == 0 {
+                pickerView.reloadComponent(1)
                 return character[row]
             } else if component == 1 {
                 return characterDic[character[pickerView.selectedRow(inComponent: 0)]]?[row]
@@ -137,13 +145,13 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         case 1:
         if component == 0 {
             sceneLabel.text = scene[row]
-        } else if component == 1 {
+        } else if component == 1 && scene[row] != "登録しない"{
             sceneLabel.text = scene[pickerView.selectedRow(inComponent: 0)] + ": " + (sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
         }
         case 2:
             if component == 0 {
                 characterLabel.text = character[row]
-            } else if component == 1 {
+            } else if component == 1 && character[row] != "登録しない"{
                 characterLabel.text = character[pickerView.selectedRow(inComponent: 0)] + ": " + (characterDic[character[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
             }
         case 3:
@@ -162,10 +170,10 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
             handler1(sceneSet)
         }
         if let handler2 = self.resultHandler2 {
-                    handler2(characterSet)
+            handler2(characterSet)
         }
         if let handler3 = self.resultHandler3 {
-                    handler3(timeSet)
+            handler3(timeSet)
         }
         
         self.dismiss(animated: true, completion: nil)
