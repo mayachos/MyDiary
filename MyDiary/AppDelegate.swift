@@ -24,8 +24,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         Realm.Configuration.defaultConfiguration = config
         Realm.Configuration.defaultConfiguration = Realm.Configuration(
-          schemaVersion: 4,
+          schemaVersion: 5,
           migrationBlock: { migration, oldSchemaVersion in
+            migration.enumerateObjects(ofType: Diary.className()) { oldObject, newObject in
+              if oldSchemaVersion < 3 {
+                newObject!["detailScene"] = ""
+              }
+            }
+            migration.enumerateObjects(ofType: Diary.className()) { oldObject, newObject in
+              if oldSchemaVersion < 3 {
+                newObject!["detailCharacter"] = ""
+              }
+            }
             migration.enumerateObjects(ofType: sceneI.className()) { oldObject, newObject in
               if oldSchemaVersion < 3 {
                 newObject!["Scene"] = ""

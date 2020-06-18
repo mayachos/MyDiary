@@ -14,6 +14,8 @@ class Diary: Object {
     @objc dynamic var day: String = ""
     @objc dynamic var text: String = ""
     @objc dynamic var scene: String = ""
+    @objc dynamic var detailScene: String = ""
     @objc dynamic var character: String = ""
+    @objc dynamic var detailChara: String = ""
     @objc dynamic var time: String = ""
 }

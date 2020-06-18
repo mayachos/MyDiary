@@ -11,83 +11,50 @@ import RealmSwift
 
 class AddViewController: UIViewController {
     @IBOutlet var sTextField: UITextField!
-    //@IBOutlet var tTextField: UITextField!
-    
-    //var SArray: [String] = []
-    //var CArray: [String] = []
-    //var tArray: [String] = []
-    var SDic: [String:[String]] = [:]
-    var cDic: [String:[String]] = [:]
-    let sItem = sceneI()
-    let sitem = sceneItem()
-    let cItem = charaI()
-    let citem = charaItem()
+    var sDic: [String] = []
+    var cDic: [String] = []
     var selectSec: Int = 0
     var selectCell: Int = 0
-    //let tItem = timeI()
-    var scene: [String] = []
-    var character: [String] = []
-    var timeArray: [String] = []
+    let userDefaults = UserDefaults.standard
+    var scene: [String] = ["登録しない","学校", "家", "レジャー施設", "お店"]
+    var character: [String] = ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
+    //var timeArray: [String] = []
     
-    func sceneInstance() {
-        self.scene += ["登録しない","学校", "家", "レジャー施設", "お店"]
-    }
-    func characterInstance() {
-        self.character += ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        for i in 0..<scene.count {
+            if userDefaults.array(forKey: scene[i]) != nil {
+                let setArray = userDefaults.array(forKey: scene[i]) as! [String]
+                sDic += setArray
+            }
+        }
+        for i in 0..<character.count {
+             if userDefaults.array(forKey: character[i]) != nil {
+                 let charaArray = userDefaults.array(forKey: character[i]) as! [String]
+                 sDic += charaArray
+             }
+         }
         // Do any additional setup after loading the view.
     }
-//    func setRealm() {
-//        let realm = try! Realm()
-//        if sTextField.text != "" && selectSec == 0{
-//            sItem.Scene = scene[selectCell]
-//            sitem.sceneName = sTextField.text!
-//            print(sItem.Scene)
-//        try! realm.write {
-//            realm.add(sItem)
-//            realm.add(sitem)
-//            }
-//        }
-//        if cTextField.text != "" && selectSec == 1{
-//            cItem.Character = character[selectCell]
-//            cItem.Character = cTextField.text!
-//        try! realm.write { realm.add(cItem) }
-//        }
-//        if tTextField.text != "" {
-//            tItem.Times = tTextField.text!
-//        try! realm.write { realm.add(tItem) }
-//        }
- //   }
+
     @IBAction func add() {
-        sceneInstance()
-        characterInstance()
-        let realm = try! Realm()
         print(selectSec)
         print(selectCell)
-        if sTextField.text != ""{
+        if sTextField.text != "" {
             if selectSec == 0 {
-                sItem.Scene = scene[selectCell]
-                sitem.sceneName = sTextField.text!
-                print(sItem.Scene)
-                try! realm.write {
-                    realm.add(sItem)
-                    realm.add(sitem)
-                }
+                sDic.append(sTextField.text!)
+                userDefaults.set(sDic, forKey: scene[selectCell])
             } else if selectSec == 1 {
-                cItem.Character = character[selectCell]
-                cItem.Character = sTextField.text!
-                try! realm.write {
-                    realm.add(cItem)
-                    realm.add(citem)
-                }
+                cDic.append(sTextField.text!)
+                userDefaults.set(cDic, forKey: character[selectCell])
             }
         }
         self.dismiss(animated: true, completion: nil)
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+       }
 
     /*
     // MARK: - Navigation

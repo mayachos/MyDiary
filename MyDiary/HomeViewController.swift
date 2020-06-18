@@ -137,6 +137,10 @@ class HomeViewController: UIViewController {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
+    }
+    
     func noItem(n:String)->Bool {
         if n == "登録しない" { return false }
         return true

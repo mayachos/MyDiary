@@ -14,6 +14,7 @@ import RealmSwift
 //}
 class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
+    let userDefaults = UserDefaults.standard
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)
     let defaultText = ""
@@ -26,18 +27,17 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     @IBOutlet weak var characterLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     
-    var scene: [String] = []
+    var scene: [String] = ["登録しない","学校", "家", "レジャー施設", "お店"]
     var sceneDic: [String:[String]] = [:]
-    var character: [String] = []
+    var character: [String] = ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
     var characterDic: [String:[String]] = [:]
-    var timeArray: [String] = []
+    var timeArray: [String] = ["登録しない", "朝", "昼", "夕方", "夜", "深夜"]
     var resultHandler1: ((String) -> Void)?
     var resultHandler2: ((String) -> Void)?
     var resultHandler3: ((String) -> Void)?
     
+    
     func sceneInstance() {
-        //let someScenes = realm.objects(sceneItem.self)
-        self.scene += ["登録しない","学校", "家", "レジャー施設", "お店"]
         self.sceneDic[scene[0]] = [" "]
         self.sceneDic[scene[1]] = ["教室", "体育館", "グラウンド", "校庭", "図書室"]
         self.sceneDic[scene[2]] = ["リビング", "キッチン", "寝室", "お風呂・トイレ"]
@@ -45,15 +45,11 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         self.sceneDic[scene[4]] = ["レストラン", "コンビニ", "スーパー", "カフェ", "デパート"]
     }
     func characterInstance() {
-        self.character += ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
         self.characterDic[character[0]] = [" ", "", "", "", ""]
         self.characterDic[character[1]] = ["自分", "親", "兄弟・姉妹", "親戚"]
         self.characterDic[character[2]] = ["幼馴染", "恋人"]
         self.characterDic[character[3]] = ["上司・先輩", "部下・後輩", "同僚"]
         self.characterDic[character[4]] = ["見知らぬ人", "店員", "幽霊", "その他"]
-    }
-    func timeInstance() {
-        self.timeArray += ["登録しない", "朝", "昼", "夕方", "夜", "深夜"]
     }
     
     override func viewDidLoad() {
@@ -61,7 +57,18 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         //definesPresentationContext = true
         sceneInstance()
         characterInstance()
-        timeInstance()
+        for i in 0..<scene.count {
+            if userDefaults.array(forKey: scene[i]) != nil {
+                let setArray = userDefaults.array(forKey: scene[i]) as! [String]
+                sceneDic[scene[i]]! += setArray
+            }
+        }
+        for i in 0..<character.count {
+              if userDefaults.array(forKey: character[i]) != nil {
+                  let charaArray = userDefaults.array(forKey: character[i]) as! [String]
+                  characterDic[character[i]]! += charaArray
+              }
+          }
         pickerView1.tag = 1
         pickerView2.tag = 2
         pickerView3.tag = 3
@@ -145,13 +152,13 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         case 1:
         if component == 0 {
             sceneLabel.text = scene[row]
-        } else if component == 1 && scene[row] != "登録しない"{
+        } else if component == 1 && row != 0{
             sceneLabel.text = scene[pickerView.selectedRow(inComponent: 0)] + ": " + (sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
         }
         case 2:
             if component == 0 {
                 characterLabel.text = character[row]
-            } else if component == 1 && character[row] != "登録しない"{
+            } else if component == 1 && row != 0{
                 characterLabel.text = character[pickerView.selectedRow(inComponent: 0)] + ": " + (characterDic[character[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
             }
         case 3:
@@ -178,6 +185,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         
         self.dismiss(animated: true, completion: nil)
     }
+    
     
 //   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //          if segue.identifier == "toHome" {

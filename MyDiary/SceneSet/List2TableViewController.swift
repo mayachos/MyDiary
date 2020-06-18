@@ -10,20 +10,15 @@ import UIKit
 import RealmSwift
 
 class List2TableViewController: UITableViewController {
-    var scene: [String] = []
+    let userDefaults = UserDefaults.standard
+    var scene: [String] = ["登録しない","学校", "家", "レジャー施設", "お店"]
     var sceneDic: [String:[String]] = [:]
-    var character: [String] = []
+    var character: [String] = ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
     var characterDic: [String:[String]] = [:]
-    var timeArray: [String] = []
-    var sItem : [sceneI] = []
-    let cItem = charaI()
-    let tItem = timeI()
+    var timeArray: [String] = ["登録しない", "朝", "昼", "夕方", "夜", "深夜"]
     var getCell: Int!
     var getSction: Int!
-    
     func sceneInstance() {
-        //let someScenes = realm.objects(sceneItem.self)
-        self.scene += ["登録しない","学校", "家", "レジャー施設", "お店"]
         self.sceneDic[scene[0]] = [" "]
         self.sceneDic[scene[1]] = ["教室", "体育館", "グラウンド", "校庭", "図書室"]
         self.sceneDic[scene[2]] = ["リビング", "キッチン", "寝室", "お風呂・トイレ"]
@@ -31,57 +26,41 @@ class List2TableViewController: UITableViewController {
         self.sceneDic[scene[4]] = ["レストラン", "コンビニ", "スーパー", "カフェ", "デパート"]
     }
     func characterInstance() {
-        self.character += ["登録しない", "家族", "友達・恋人", "仕事関係", "その他"]
         self.characterDic[character[0]] = [" "]
         self.characterDic[character[1]] = ["自分", "親", "兄弟・姉妹", "親戚"]
         self.characterDic[character[2]] = ["幼馴染", "恋人"]
         self.characterDic[character[3]] = ["上司・先輩", "部下・後輩", "同僚"]
         self.characterDic[character[4]] = ["見知らぬ人", "店員", "幽霊", "その他"]
     }
-    func timeInstance() {
-        self.timeArray += ["登録しない", "朝", "昼", "夕方", "夜", "深夜"]
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
         tableView.register(UINib(nibName: "List2TableViewCell", bundle: nil), forCellReuseIdentifier: "cell2")
         tableView.delegate = self
         tableView.dataSource = self
-        setRealm()
-        //let itemt = realm.objects(timeI.self)
-        //sceneDic[scene[getCell]]! += items.sceneName
-        
+        setData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         tableView.reloadData()
     }
     
-    func setRealm() {
+    func setData() {
         sceneInstance()
         characterInstance()
-        timeInstance()
-        let realm = try! Realm()
-        let sitem = realm.objects(sceneI.self)
-        let items = realm.objects(sceneItem.self)
-        var sDic: [String:[String]] = [:]
-        
-        let itemc = realm.objects(charaItem.self)
-        for i in 0..<items.count {
-            print(sItem.count)
-            sceneDic.append(items[i].sceneName)
+        for i in 0..<scene.count {
+            if userDefaults.array(forKey: scene[i]) != nil {
+                let setArray = userDefaults.array(forKey: scene[i]) as! [String]
+                sceneDic[scene[i]]! += setArray
+            }
         }
-        for i in 0..<itemc.count {
-            character.append(itemc[i].Chara)
+        for i in 0..<character.count {
+            if userDefaults.array(forKey: character[i]) != nil {
+                let charaArray = userDefaults.array(forKey: character[i]) as! [String]
+                characterDic[character[i]]! += charaArray
+            }
         }
-        //        try! realm.write {
-        //            //realm.add(sItem)
-        //            realm.add(cItem)
-        //            realm.add(tItem)
-        //            }
     }
     
     func selectSection() -> [String]{
