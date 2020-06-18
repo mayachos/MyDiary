@@ -13,14 +13,10 @@ class ListTableViewController: UITableViewController {
     var scene: [String] = []
     var character: [String] = []
     var timeArray: [String] = []
-    var sItem : [sceneI] = []
-    let cItem = charaI()
-    let tItem = timeI()
     var chosenCell: Int!
     var chosenSction: Int!
     
     func sceneInstance() {
-        //let someScenes = realm.objects(sceneItem.self)
         self.scene += ["登録しない","学校", "家", "レジャー施設", "お店"]
     }
     func characterInstance() {
@@ -34,50 +30,14 @@ class ListTableViewController: UITableViewController {
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         tableView.register(UINib(nibName: "ListTableViewCell", bundle: nil), forCellReuseIdentifier: "cell")
-        setRealm()
-        //let items = realm.objects(sceneI.self)
-        //let itemc = realm.objects(charaI.self)
-        //let itemt = realm.objects(timeI.self)
-
-//        catch {
-//                print("error")
-//            }
-//        for i in 0..<items.count {
-//            s.append(items[i].Scene)
-//        }
-//        for i in 0..<itemc.count {
-//            c.append(itemc[i].Character)
-//        }
-//        for i in 0..<itemt.count {
-//            t.append(itemt[i].Times)
-//        }
+        sceneInstance()
+        characterInstance()
+        timeInstance()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
         tableView.reloadData()
-    }
-    
-    func setRealm() {
-        sceneInstance()
-        characterInstance()
-        timeInstance()
-        let realm = try! Realm()
-        for i in 0..<sItem.count {
-            print(sItem.count)
-            if sItem[i].Scene.isEmpty {
-                sItem[i].Scene = scene[i]
-                try! realm.write { realm.add(sItem) }
-            }
-        }
-        for i in 0..<character.count { cItem.Character = character[i] }
-        for i in 0..<timeArray.count { tItem.Times = timeArray[i] }
-//        try! realm.write {
-//            //realm.add(sItem)
-//            realm.add(cItem)
-//            realm.add(tItem)
-//            }
     }
 
         // Uncomment the following line to preserve selection between presentations
@@ -91,6 +51,18 @@ class ListTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 3
+    }
+    
+    override func tableView(_ table: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 0 {
+            return "場面"
+        } else if section == 1 {
+            return "登場人物"
+        } else if section == 2 {
+            return "時間帯"
+        } else {
+            return ""
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
