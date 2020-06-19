@@ -174,6 +174,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         let timeSet = self.timeLabel.text ?? defaultText
         
         if let handler1 = self.resultHandler1 {
+            print(sceneSet)
             handler1(sceneSet)
         }
         if let handler2 = self.resultHandler2 {

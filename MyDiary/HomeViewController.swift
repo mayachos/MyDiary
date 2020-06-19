@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     
     @IBOutlet var dayLabel: UILabel!
     @IBOutlet var diaryTextView: UITextView!
+    @IBOutlet var button: [UIButton]!
     var diaryText: String!
     var dayText: String!
     var monthText: Int!
@@ -41,8 +42,17 @@ class HomeViewController: UIViewController {
         wday = calender.component(.weekday, from: now)
     }
 
+    func screenSet() {
+        diaryTextView.layer.borderWidth = 2
+        diaryTextView.layer.cornerRadius = 10
+        for i in 0..<button.count {
+            button[i].layer.cornerRadius = 10
+            button[i].layer.borderWidth = 2
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        screenSet()
         // Do any additional setup after loading the view.
         //definesPresentationContext = true
     }
@@ -56,6 +66,21 @@ class HomeViewController: UIViewController {
         } else {
             let sameDay = judgeSameDay(dayJudge: appearDay)
             diaryTextView.text = diaries[sameDay].text
+        }
+        self.view.addBackground(name:  monthImage() )
+    }
+    func monthImage() -> String{
+        switch month{
+        case 6:
+            return "R.PNG"
+        case 7:
+            return "O.PNG"
+        case 8:
+            return "Y.PNG"
+        case 9:
+            return "G.PNG"
+        default:
+            return "R.PNG"
         }
     }
     
@@ -106,35 +131,26 @@ class HomeViewController: UIViewController {
     }
     @IBAction func showView(_ sender: Any) {
         let storyboard: UIStoryboard = self.storyboard!
-        let second = storyboard.instantiateViewController(identifier: "SHOW")
+        let second = storyboard.instantiateViewController(identifier: "SHOW") as! ShowViewController
+        second.setting = 0
         self.present(second, animated: true, completion: nil)
         //self.performSegue(withIdentifier: "fromHomeToShow", sender: nil)
     }
     
     @IBAction func sceneView(_ sender: Any) {
         let storyboard: UIStoryboard = self.storyboard!
-        let second = storyboard.instantiateViewController(identifier: "SCENE")
+        let second = storyboard.instantiateViewController(identifier: "SCENE") as! SceneSettingViewController
+        second.resultHandler1 = { sceneSet in
+            self.sceneText = sceneSet
+        }
+        second.resultHandler2 = { characterSet in
+            self.characterText = characterSet
+        }
+        second.resultHandler3 = { timeSet in
+            self.timeText = timeSet
+        }
         self.present(second, animated: true, completion: nil)
         //self.performSegue(withIdentifier: "toScene", sender: nil)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toScene" {
-            let nextView = segue.destination as! SceneSettingViewController
-            nextView.resultHandler1 = { sceneSet in
-                self.sceneText = sceneSet
-            }
-            nextView.resultHandler2 = { characterSet in
-                self.characterText = characterSet
-            }
-            nextView.resultHandler3 = { timeSet in
-                self.timeText = timeSet
-            }
-        }
-        if segue.identifier == "fromHomeToShow" {
-            let nextView = segue.destination as! ShowViewController
-            nextView.setting = 0
-        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -142,10 +158,11 @@ class HomeViewController: UIViewController {
     }
     
     func noItem(n:String)->Bool {
-        if n == "登録しない" { return false }
+        if n == "登録しない" || n == "Label"{ return false }
         return true
     }
 
+    
     /*
     // MARK: - Navigation
 
@@ -157,3 +174,4 @@ class HomeViewController: UIViewController {
     */
 
 }
+

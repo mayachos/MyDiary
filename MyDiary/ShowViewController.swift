@@ -15,6 +15,7 @@ class ShowViewController: UIViewController {
     @IBOutlet var appearLabel: UILabel!
     @IBOutlet var nextButton: UIButton!
     @IBOutlet var preButton: UIButton!
+    @IBOutlet var imageview: UIImageView!
     let realm = try! Realm()
     let diaries = try! Realm().objects(Diary.self)//.sorted(byKeyPath: "day")
     let now = Date()
@@ -25,7 +26,7 @@ class ShowViewController: UIViewController {
    // var nowmonth:  Int!
     var year: Int!
     var month: Int!
-    var monthAppear: Int!
+    var monthAppear: Int = 0
     var textArray: Array<String> = []
     var dayArray: Array<String> = []
     var monthArray: Array<Int> = []
@@ -37,6 +38,7 @@ class ShowViewController: UIViewController {
     var sceneText: String!
     var characterText: String!
     var timeText: String!
+    var imageCount: Int = 0
     
     func calenderInstance() {
         calender.locale = Locale(identifier: "ja")
@@ -44,9 +46,55 @@ class ShowViewController: UIViewController {
         month = calender.component(.month, from: now)
     }
     
+    func imageSet() {
+        //var imageArray: [UIImage] = []
+        switch monthAppear {
+         case 6:
+             imageCount = 29
+         case 7:
+             imageCount = 29
+         case 8:
+             imageCount = 27
+         case 9:
+             imageCount = 29
+         default:
+            imageCount = 0
+              }
+            print(imageCount)
+        var len = 0
+        for i in 0..<diaries.count {
+            if monthJudge(m: monthArray[i], count: monthCount) { len += 1 }
+        }
+        if diaries.count < imageCount  && diaries.count > 0  && imageCount != 0{
+            self.imageview.image = UIImage(named: imageMonth(index: len))
+            //self.view.addBackground(name: imageMonth(index: len))
+        } else if diaries.count > imageCount {
+             self.imageview.image = UIImage(named: imageMonth(index: imageCount))
+           // self.view.addBackground(name: imageMonth(index: imageCount))
+        }
+    }
+    
+    func imageMonth(index: Int) -> String{
+        switch monthCount {
+        case 0:
+            imageCount = 29
+            return "R_\(index).PNG"
+        case 1:
+            imageCount = 29
+            return "O_\(index).PNG"
+        case 2:
+            imageCount = 27
+            return "Y_\(index).PNG"
+        case 3:
+            imageCount = 29
+            return "G_\(index).PNG"
+        default:
+            return "R_\(index).PNG"
+             }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         for i in 0..<diaries.count {
             monthArray.append(diaries[i].month)
@@ -60,6 +108,7 @@ class ShowViewController: UIViewController {
             nextButton.isHidden = true
             preButton.isHidden = true
         } else if setting == 0 {
+            print(diaries.count)
             nextButton.isHidden = false
             preButton.isHidden = false
         }
@@ -68,13 +117,15 @@ class ShowViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        showTextView.layer.borderWidth = 2
+        showTextView.layer.cornerRadius = 10
         if setting == 0 {
             calenderInstance()
-            appearLabel.text = String(month)
-            appearView(c: monthCount)
+            appearLabel.text = String(month) + "月"
             monthAppear = month
+            appearView(c: monthCount)
         } else if setting == 1 {
-            appearLabel.text = sceneText
+            appearLabel.text = "検索結果"
             appearView()
         }
     }
@@ -89,7 +140,7 @@ class ShowViewController: UIViewController {
                 monthAppear = 12
                 monthCount -= 89
             }
-            appearLabel.text = String(monthAppear)
+            appearLabel.text = String(monthAppear) + "月"
             appearView(c: monthCount)
         }
     }
@@ -106,7 +157,7 @@ class ShowViewController: UIViewController {
                 monthAppear = 1
                 monthCount += 89
             }
-            appearLabel.text = String(monthAppear)
+            appearLabel.text = String(monthAppear) + "月"
             appearView(c: monthCount)
         }
        }
@@ -138,6 +189,7 @@ class ShowViewController: UIViewController {
                 monthDiary += "\n\n\n"
             }
         }
+        imageSet()
         showTextView.text = monthDiary
     }
     
@@ -179,4 +231,25 @@ class ShowViewController: UIViewController {
     }
     */
 
+}
+extension UIView {
+    func addBackground(name: String) {
+        // スクリーンサイズの取得
+        let width = UIScreen.main.bounds.size.width
+        let height = UIScreen.main.bounds.size.height
+
+        
+        // スクリーンサイズにあわせてimageViewの配置
+        let imageViewBackground = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        //imageViewに背景画像を表示
+        imageViewBackground.image = UIImage(named: name)
+
+        // 画像の表示モードを変更。
+        imageViewBackground.contentMode = UIView.ContentMode.scaleAspectFill
+
+        // subviewをメインビューに追加
+        self.addSubview(imageViewBackground)
+        // 加えたsubviewを、最背面に設置する
+        self.sendSubviewToBack(imageViewBackground)
+    }
 }

@@ -43,7 +43,11 @@ class List2TableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
         tableView.reloadData()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+         userDefaults.synchronize()
     }
     
     func setData() {

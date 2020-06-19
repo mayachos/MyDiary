@@ -49,7 +49,18 @@ class AddViewController: UIViewController {
                 userDefaults.set(cDic, forKey: character[selectCell])
             }
         }
-        self.dismiss(animated: true, completion: nil)
+        let alert = UIAlertController(
+            title: "保存完了",
+            message: "ワードを登録しました",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil
+        ))
+        present(alert, animated: true)
+        //self.dismiss(animated: true, completion: nil)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
