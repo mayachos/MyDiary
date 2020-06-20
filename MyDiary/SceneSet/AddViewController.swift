@@ -38,8 +38,8 @@ class AddViewController: UIViewController {
     }
 
     @IBAction func add() {
-        print(selectSec)
-        print(selectCell)
+        //print(selectSec)
+        //print(selectCell)
         if sTextField.text != "" {
             if selectSec == 0 {
                 sDic.append(sTextField.text!)
@@ -48,18 +48,18 @@ class AddViewController: UIViewController {
                 cDic.append(sTextField.text!)
                 userDefaults.set(cDic, forKey: character[selectCell])
             }
+            let alert = UIAlertController(
+                title: "保存完了",
+                message: "ワードを登録しました",
+                preferredStyle: .alert
+            )
+            alert.addAction(UIAlertAction(
+                title: "OK",
+                style: .default,
+                handler: nil
+            ))
+            present(alert, animated: true)
         }
-        let alert = UIAlertController(
-            title: "保存完了",
-            message: "ワードを登録しました",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(
-            title: "OK",
-            style: .default,
-            handler: nil
-        ))
-        present(alert, animated: true)
         //self.dismiss(animated: true, completion: nil)
     }
     
