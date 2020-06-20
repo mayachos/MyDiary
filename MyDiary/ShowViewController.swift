@@ -21,6 +21,7 @@ class ShowViewController: UIViewController {
     let now = Date()
     var calender = Calendar.current
     var setting: Int = 0
+    let MONTH = 202005
     
    // var nowyear: Int!
    // var nowmonth:  Int!
@@ -48,7 +49,8 @@ class ShowViewController: UIViewController {
     
     func imageSet() {
         //var imageArray: [UIImage] = []
-        switch monthAppear {
+        var ma = monthAppear
+        switch ma {
          case 6:
              imageCount = 29
          case 7:
@@ -60,32 +62,38 @@ class ShowViewController: UIViewController {
          default:
             imageCount = 0
               }
-            print(imageCount)
-        var len = 0
-        for i in 0..<diaries.count {
-            if monthJudge(m: monthArray[i], count: monthCount) { len += 1 }
+            //print(imageCount)
+        var len = Array<Int>(repeating: 0, count: 12)
+        for j in 0..<len.count {
+            for i in 0..<monthArray.count {
+                if monthJudge(m: monthArray[i], count: j) { len[j + 6] += 1 }
+                //print(monthArray[i])
+            }
         }
-        if diaries.count < imageCount  && diaries.count > 0  && imageCount != 0{
-            self.imageview.image = UIImage(named: imageMonth(index: len))
+        if ma == 12 { ma = 0 }
+        if ma == -1 { ma = 11 }
+        if len[ma] < imageCount  && len[ma] >= 0
+            && imageCount != 0 {
+            self.imageview.image = UIImage(named: imageMonth(index: len[ma]))
             //self.view.addBackground(name: imageMonth(index: len))
-        } else if diaries.count > imageCount {
-             self.imageview.image = UIImage(named: imageMonth(index: imageCount))
+        } else if len[ma] >= imageCount {
+             self.imageview.image = UIImage(named: imageMonth(index: imageCount-1))
            // self.view.addBackground(name: imageMonth(index: imageCount))
         }
     }
     
     func imageMonth(index: Int) -> String{
-        switch monthCount {
-        case 0:
+        switch monthAppear {
+        case 6:
             imageCount = 29
             return "R_\(index).PNG"
-        case 1:
+        case 7:
             imageCount = 29
             return "O_\(index).PNG"
-        case 2:
+        case 8:
             imageCount = 27
             return "Y_\(index).PNG"
-        case 3:
+        case 9:
             imageCount = 29
             return "G_\(index).PNG"
         default:
@@ -131,7 +139,7 @@ class ShowViewController: UIViewController {
     }
     
     @IBAction func preMonth() {
-        if setting == 0 {
+        if setting == 0 && MONTH < year * 100 + month + monthCount{
             monthDiary = ""
             if monthAppear > 1 {
                 monthAppear -= 1

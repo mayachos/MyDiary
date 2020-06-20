@@ -152,13 +152,13 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
         case 1:
         if component == 0 {
             sceneLabel.text = scene[row]
-        } else if component == 1 && row != 0{
+        } else if component == 1 {
             sceneLabel.text = scene[pickerView.selectedRow(inComponent: 0)] + ": " + (sceneDic[scene[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
         }
         case 2:
             if component == 0 {
                 characterLabel.text = character[row]
-            } else if component == 1 && row != 0{
+            } else if component == 1 {
                 characterLabel.text = character[pickerView.selectedRow(inComponent: 0)] + ": " + (characterDic[character[pickerView.selectedRow(inComponent: 0)]]?[row] ?? defaultText)
             }
         case 3:

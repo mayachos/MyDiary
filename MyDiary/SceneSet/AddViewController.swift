@@ -22,16 +22,16 @@ class AddViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        for i in 0..<scene.count {
-            if userDefaults.array(forKey: scene[i]) != nil {
-                let setArray = userDefaults.array(forKey: scene[i]) as! [String]
+//        for i in 0..<scene.count {
+            if userDefaults.array(forKey: scene[selectCell]) != nil {
+                let setArray = userDefaults.array(forKey: scene[selectCell]) as! [String]
                 sDic += setArray
-            }
+//            }
         }
         for i in 0..<character.count {
              if userDefaults.array(forKey: character[i]) != nil {
                  let charaArray = userDefaults.array(forKey: character[i]) as! [String]
-                 sDic += charaArray
+                 cDic += charaArray
              }
          }
         // Do any additional setup after loading the view.

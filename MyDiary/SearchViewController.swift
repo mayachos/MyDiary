@@ -55,7 +55,7 @@ class SearchViewController: UIViewController, UIPickerViewDelegate, UIPickerView
     }
     func judgeSame(array: Array<String>, i: Int) -> Bool {
         for j in 0..<i {
-            if array[i] != array[j]{
+            if array[i] != array[j] && array[i] != ""{
                 return true
             } else {
                 return false
