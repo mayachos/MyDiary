@@ -54,6 +54,7 @@ class SceneSettingViewController: UIViewController, UIPickerViewDelegate, UIPick
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.pickerView1.setValue(UIColor(named: "ColorSet-Text"), forKey: "textColor")
         //definesPresentationContext = true
         sceneInstance()
         characterInstance()

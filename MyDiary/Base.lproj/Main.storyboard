@@ -21,9 +21,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnS-k5-XwI">
-                                <rect key="frame" x="214" y="688" width="160" height="48"/>
+                                <rect key="frame" x="214" y="681" width="160" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="0.90068493149999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Nu3-Nm-TfU"/>
                                     <constraint firstAttribute="width" constant="160" id="g3V-c7-HhJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="36"/>
@@ -35,10 +36,11 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dM7-Pe-x0T">
-                                <rect key="frame" x="40" y="684" width="160" height="52"/>
+                                <rect key="frame" x="40" y="681" width="160" height="55"/>
                                 <color key="backgroundColor" white="1" alpha="0.90068493149999995" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="0v4-oa-aq0"/>
+                                    <constraint firstAttribute="height" constant="55" id="ZzN-xR-cIz"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="40"/>
                                 <state key="normal" title="保存">
@@ -65,7 +67,7 @@
                                     <constraint firstAttribute="width" constant="150" id="bD2-yj-XoU"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="27"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="08t-QB-kvL">
@@ -74,7 +76,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="490" id="gOV-6s-wgE"/>
                                 </constraints>
-                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -484,13 +486,13 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="登場人物" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIn-59-ru8">
                                 <rect key="frame" x="10" y="334" width="88" height="22"/>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="22"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="時間帯" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZHs-js-FVl">
                                 <rect key="frame" x="10" y="504" width="72" height="24"/>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="24"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nNw-J5-Wtr">
@@ -514,7 +516,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="検索画面" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL5-mc-n4v">
                                 <rect key="frame" x="147" y="74" width="120" height="30"/>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IDU-Qz-b9Y">
@@ -533,13 +535,13 @@
                                     <constraint firstAttribute="width" constant="250" id="lEp-8d-Cab"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="場面" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4q-wC-gg0">
                                 <rect key="frame" x="10" y="164" width="60" height="30"/>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Aot-Sd-hY7">
@@ -558,7 +560,7 @@
                                     <constraint firstAttribute="width" constant="250" id="VDS-GY-dTl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="選択してください" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTL-bA-fXa">
@@ -567,7 +569,7 @@
                                     <constraint firstAttribute="width" constant="250" id="naq-Cf-hDk"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Mukasi-Mukasi" family="Mukasi Mukasi" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
